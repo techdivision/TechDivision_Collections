@@ -1,7 +1,7 @@
 {
     "name": "techdivision/collections",
     "type": "package",
-    "description": "Lang package implementation providing basic PHP datatypes.",
+    "description": "Package that provides basic PHP collections and utilities.",
     "homepage": "https://github.com/techdivision/TechDivision_Collections",
     "license": ["OSL-3.0"],
     "repositories": [
