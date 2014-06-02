@@ -20,6 +20,8 @@
  */
 namespace TechDivision\Collections;
 
+use TechDivision\Lang\Object;
+
 /**
  * This class implements static methods that can be used
  * to work with Collections.

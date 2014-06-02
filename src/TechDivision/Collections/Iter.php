@@ -20,6 +20,8 @@
  */
 namespace TechDivision\Collections;
 
+use TechDivision\Lang\Object;
+
 /**
  * This class is the default implementation of a Iterator
  * used for foreach constructs.
@@ -31,7 +33,7 @@ namespace TechDivision\Collections;
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link https://github.com/techdivision/TechDivision_Collections
  */
-class Iter extends Object implements Iterator
+class Iter extends Object implements \Iterator
 {
 
     /**
