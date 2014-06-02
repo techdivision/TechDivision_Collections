@@ -24,16 +24,16 @@ use TechDivision\Lang\NullPointerException;
 
 /**
  * This class is the implementation of a Dictionary.
- * A
- * dictionary uses objects as keys instead of integers
+ *
+ * A dictionary uses objects as keys instead of integers
  * like a HashMap.
  *
- * @category Library
- * @package TechDivision_Collections
- * @author Tim Wagner <tw@techdivision.com>
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
  * @copyright 2014 TechDivision GmbH <info@techdivision.com>
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link https://github.com/techdivision/TechDivision_Collections
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 class IdentityDictionary extends Dictionary
 {
@@ -45,6 +45,7 @@ class IdentityDictionary extends Dictionary
      *
      * @param object $key Holds the key to the key of the element to return
      *
+     * @return mixed The requested value
      * @throws \TechDivision\Collections\InvalidKeyException Is thrown if the passed key is NOT an object
      * @throws \TechDivision\Lang\NullPointerException Is thrown if the passed key OR value are NULL
      * @throws \TechDivision\Collections\IndexOutOfBoundsException Is thrown if no element with the passed key exists in the Dictionary
@@ -55,7 +56,7 @@ class IdentityDictionary extends Dictionary
         if (is_null($key)) {
             throw new NullPointerException('Passed key is null');
         }
-        if (! is_object($key)) {
+        if (!is_object($key)) {
             throw new InvalidKeyException('Passed key has to be an object');
         }
         // run over all keys and check if one is equal to the passed one

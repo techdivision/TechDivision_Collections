@@ -26,25 +26,27 @@ namespace TechDivision\Collections;
  *
  * Successive  objects are obtained by the nextElement method.
  *
- * @category Library
- * @package TechDivision_Collections
- * @author Tim Wagner <tw@techdivision.com>
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
  * @copyright 2014 TechDivision GmbH <info@techdivision.com>
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link https://github.com/techdivision/TechDivision_Collections
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 class Enum extends Object implements Enumeration
 {
 
     /**
+     * The possible items.
      *
-     * @var array The possible items.
+     * @var array
      */
     protected $items = null;
 
     /**
+     * The point to the actual item.
      *
-     * @var integer The point to the actual item.
+     * @var integer
      */
     protected $itemPointer = 0;
 
@@ -52,8 +54,9 @@ class Enum extends Object implements Enumeration
      * Standardconstructor that adds the array passed
      * as parameter to the internal membervariable.
      *
-     * @param array $items
-     *            An array to initialize the Enumeration
+     * @param array $items An array to initialize the Enumeration
+     *
+     * @return void
      */
     public function __construct($items = array())
     {
@@ -61,7 +64,9 @@ class Enum extends Object implements Enumeration
     }
 
     /**
+     * Tests whether there are elements remaining in the enumeration.
      *
+     * @return true if there is at least one more element in the enumeration, that is, if the next call to nextElement will not throw a NoSuchElementException.
      * @see \TechDivision\Collections\Enumeration::hasMoreElements()
      */
     public function hasMoreElements()
@@ -74,7 +79,10 @@ class Enum extends Object implements Enumeration
     }
 
     /**
+     * Obtain the next element in the enumeration.
      *
+     * @return the next element in the enumeration
+     * @throws \TechDivision\Collections\NoSuchElementException if there are no more elements
      * @see \TechDivision\Collections\Enumeration::nextElement()
      */
     public function nextElement()

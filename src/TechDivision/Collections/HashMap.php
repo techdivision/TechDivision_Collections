@@ -30,12 +30,12 @@ use \TechDivision\Lang\ClassCastException;
 /**
  * This class is the implementation of a HashMap.
  *
- * @category Library
- * @package TechDivision_Collections
- * @author Tim Wagner <tw@techdivision.com>
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
  * @copyright 2014 TechDivision GmbH <info@techdivision.com>
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link https://github.com/techdivision/TechDivision_Collections
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 class HashMap extends AbstractMap
 {
@@ -44,8 +44,7 @@ class HashMap extends AbstractMap
      * Standardconstructor that adds the array passed
      * as parameter to the internal membervariable.
      *
-     * @param array $items
-     *            An array to initialize the HashMap
+     * @param array $items An array to initialize the HashMap
      *
      * @return void
      *
@@ -73,10 +72,8 @@ class HashMap extends AbstractMap
      * This method adds the passed object with the passed key
      * to the HashMap.
      *
-     * @param mixed $key
-     *            The key to add the passed value under
-     * @param mixed $object
-     *            The object to add to the HashMap
+     * @param mixed $key    The key to add the passed value under
+     * @param mixed $object The object to add to the HashMap
      *
      * @return \TechDivision\Collections\HashMap The instance
      * @throws \TechDivision\Collections\InvalidKeyException Is thrown if the passed key is NOT an primitve datatype
@@ -121,8 +118,7 @@ class HashMap extends AbstractMap
      * This method Returns a new HashMap initialized with the
      * passed array.
      *
-     * @param array $array
-     *            Holds the array to initialize the new HashMap
+     * @param array $array Holds the array to initialize the new HashMap
      *
      * @return \TechDivision\Collections\HashMap Returns a HashMap initialized with the passed array
      * @throws \TechDivision\Lang\ClassCastException Is thrown if the passed object is not an array

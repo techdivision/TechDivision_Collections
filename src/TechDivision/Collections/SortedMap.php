@@ -40,5 +40,5 @@ interface SortedMap extends Map
      *
      * @return \TechDivision\Collections\Comparator Holds the comparator passed with the constructor
      */
-     public function comparator();
+    public function comparator();
 }

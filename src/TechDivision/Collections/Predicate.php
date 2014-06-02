@@ -18,7 +18,6 @@
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link      https://github.com/techdivision/TechDivision_Collections
  */
-
 namespace TechDivision\Collections;
 
 /**
@@ -38,7 +37,7 @@ interface Predicate
      * This method evaluates the object passed as parameter against
      * the anything specified in the evaluate method.
      *
-     * @param object The object that should be evaluated
+     * @param object $object The object that should be evaluated
      *
      * @return boolean Returns a boolean depending on the implementation of the method
      */

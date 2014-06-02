@@ -31,12 +31,12 @@ use TechDivision\Lang\NullPointerException;
 /**
  * This class is the implementation of a sorted HashMap.
  *
- * @category Library
- * @package TechDivision_Collections
- * @author Tim Wagner <tw@techdivision.com>
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
  * @copyright 2014 TechDivision GmbH <info@techdivision.com>
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link https://github.com/techdivision/TechDivision_Collections
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 class TreeMap extends AbstractMap implements SortedMap
 {
@@ -168,7 +168,10 @@ class TreeMap extends AbstractMap implements SortedMap
     }
 
     /**
+     * This method returns the comparator passed
+     * with the constructor.
      *
+     * @return \TechDivision\Collections\Comparator Holds the comparator passed with the constructor
      * @see \TechDivision\Collections\SortedMap::comparator()
      */
     public function comparator()

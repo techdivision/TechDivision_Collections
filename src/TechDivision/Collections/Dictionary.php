@@ -30,12 +30,12 @@ use TechDivision\Lang\IndexOutOfBoundsException;
  * A dictionary uses objects as keys instead of integers
  * like a HashMap.
  *
- * @category Library
- * @package TechDivision_Collections
- * @author Tim Wagner <tw@techdivision.com>
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
  * @copyright 2014 TechDivision GmbH <info@techdivision.com>
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link https://github.com/techdivision/TechDivision_Collections
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 class Dictionary extends Object implements Set
 {
@@ -65,8 +65,7 @@ class Dictionary extends Object implements Set
      * Standardconstructor that adds the values of the array passed
      * as parameter to the internal membervariable.
      *
-     * @param array $items
-     *            An array to initialize the Dictionary
+     * @param array $items An array to initialize the Dictionary
      *
      * @return void
      * @throws \TechDivision\Lang\ClassCastException Is thrown if nor NULL or an object that is not a Dictionary is passed
@@ -94,10 +93,8 @@ class Dictionary extends Object implements Set
      * This method adds the passed value with the passed key
      * to the Dictionary.
      *
-     * @param object $key
-     *            Holds the key as object to add the value under
-     * @param mixed $value
-     *            Holds the value to add
+     * @param object $key   Holds the key as object to add the value under
+     * @param mixed  $value Holds the value to add
      *
      * @return \TechDivision\Collections\Dictionary The instance
      * @throws \TechDivision\Collections\InvalidKeyException Is thrown if the passed key is NOT an object
@@ -129,9 +126,9 @@ class Dictionary extends Object implements Set
      * This method returns the element with the passed key
      * from the Dictionary.
      *
-     * @param object $key
-     *            Holds the key of the element to return
+     * @param object $key Holds the key of the element to return
      *
+     * @return mixed The requested element
      * @throws \TechDivision\Lang\InvalidKeyException Is thrown if the passed key is NOT an object
      * @throws \TechDivision\Lang\NullPointerException Is thrown if the passed key OR value are NULL
      * @throws \TechDivision\Collections\IndexOutOfBoundsException Is thrown if no element with the passed key exists in the Dictionary
@@ -160,7 +157,10 @@ class Dictionary extends Object implements Set
     }
 
     /**
+     * This method initializes the Collection and removes
+     * all exsiting entries.
      *
+     * @return void
      * @see \TechDivision\Collections\Collection::clear()
      */
     public function clear()
@@ -172,7 +172,9 @@ class Dictionary extends Object implements Set
     }
 
     /**
+     * This method returns the number of entries of the Collection.
      *
+     * @return integer The number of entries
      * @see \TechDivision\Collections\InterfacesCollection::size()
      */
     public function size()
@@ -184,8 +186,7 @@ class Dictionary extends Object implements Set
      * This method checks if the element with the passed
      * key exists in the Dictionary.
      *
-     * @param object $key
-     *            Holds the key to check the elements of the Dictionary for
+     * @param object $key Holds the key to check the elements of the Dictionary for
      *
      * @return boolean Returns true if an element with the passed key exists in the Dictionary
      * @throws \TechDivision\Collections\InvalidKeyException Is thrown if the passed key is NOT an object
@@ -213,7 +214,10 @@ class Dictionary extends Object implements Set
     }
 
     /**
+     * This returns true if the Collection has no
+     * entries, otherwise false.
      *
+     * @return boolean
      * @see \TechDivision\Collections\Collection::isEmpty()
      */
     public function isEmpty()
@@ -226,7 +230,12 @@ class Dictionary extends Object implements Set
     }
 
     /**
+     * This method returns an array with the
+     * items of the Dictionary.
      *
+     * The keys are lost in the array.
+     *
+     * @return array Holds an array with the items of the Dictionary
      * @see \TechDivision\Collections\Collection::toArray()
      */
     public function toArray()
@@ -249,8 +258,7 @@ class Dictionary extends Object implements Set
      * This method removes the element with the passed
      * key, that has to be an object, from the Dictionary.
      *
-     * @param object $key
-     *            Holds the key of the element to remove
+     * @param object $key Holds the key of the element to remove
      *
      * @return void
      * @throws \TechDivision\Lang\NullPointerException Is thrown if the passed key is NULL
@@ -283,8 +291,8 @@ class Dictionary extends Object implements Set
      * This method appends all elements of the
      * passed array to the Dictionary.
      *
-     * @param array $array
-     *            Holds the array with the values to add
+     * @param array $array Holds the array with the values to add
+     *
      * @return void
      */
     public function addAll($array)
