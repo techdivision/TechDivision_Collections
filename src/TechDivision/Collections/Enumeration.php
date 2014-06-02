@@ -26,12 +26,12 @@ namespace TechDivision\Collections;
  *
  * Successive objects are obtained by the nextElement method.
  *
- * @category Library
- * @package TechDivision_Collections
- * @author Tim Wagner <tw@techdivision.com>
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
  * @copyright 2014 TechDivision GmbH <info@techdivision.com>
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link https://github.com/techdivision/TechDivision_Collections
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 interface Enumeration
 {
@@ -41,7 +41,7 @@ interface Enumeration
      *
      * @return true if there is at least one more element in the enumeration, that is, if the next call to nextElement will not throw a NoSuchElementException.
      */
-    function hasMoreElements();
+    public function hasMoreElements();
 
     /**
      * Obtain the next element in the enumeration.
@@ -49,5 +49,5 @@ interface Enumeration
      * @return the next element in the enumeration
      * @throws \TechDivision\Collections\NoSuchElementException if there are no more elements
      */
-    function nextElement();
+    public function nextElement();
 }

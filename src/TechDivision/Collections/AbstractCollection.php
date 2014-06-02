@@ -30,12 +30,12 @@ use TechDivision\Lang\NullPointerException;
 /**
  * Abstract base class of the IndexedCollections.
  *
- * @category Library
- * @package TechDivision_Collections
- * @author Tim Wagner <tw@techdivision.com>
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
  * @copyright 2014 TechDivision GmbH <info@techdivision.com>
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link https://github.com/techdivision/TechDivision_Collections
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 abstract class AbstractCollection extends Object implements Collection, \IteratorAggregate
 {
@@ -60,7 +60,12 @@ abstract class AbstractCollection extends Object implements Collection, \Iterato
     }
 
     /**
-     *
+	 * This method appends all elements of the
+	 * passed array to the Collection.
+	 *
+	 * @param array $array Holds the array with the values to add
+	 *
+	 * @return \TechDivision\Collections\Collection The instance
      * @see \TechDivision\Collections\Collection::addAll($array)
      */
     public function addAll($array)
@@ -78,6 +83,7 @@ abstract class AbstractCollection extends Object implements Collection, \Iterato
      *
      * @param mixed $key Holds the key of the element to return
      *
+     * @return mixed The requested element
      * @throws \TechDivision\Collections\InvalidKeyException Is thrown if the passed key is NOT an integer
      * @throws \TechDivision\Collections\NullPointerException Is thrown if the passed key OR value are NULL
      * @throws \TechDivision\Collections\IndexOutOfBoundsException Is thrown if no element with the passed key exists in the Collection
@@ -167,7 +173,11 @@ abstract class AbstractCollection extends Object implements Collection, \Iterato
     }
 
     /**
+     * This method returns an array with the
+     * items of the Dictionary. The keys are
+     * lost in the array.
      *
+     * @return array Holds an array with the items of the Dictionary
      * @see \TechDivision\Collections\Collection::toArray()
      */
     public function toArray()
@@ -176,7 +186,9 @@ abstract class AbstractCollection extends Object implements Collection, \Iterato
     }
 
     /**
+     * This method returns the number of entries of the Collection.
      *
+     * @return integer The number of entries
      * @see \TechDivision\Collections\Collection::size()
      */
     public function size()
@@ -185,7 +197,10 @@ abstract class AbstractCollection extends Object implements Collection, \Iterato
     }
 
     /**
+     * This method initializes the Collection and removes
+     * all exsiting entries.
      *
+     * @return void
      * @see \TechDivision\Collections\Collection::clear()
      */
     public function clear()
@@ -194,7 +209,10 @@ abstract class AbstractCollection extends Object implements Collection, \Iterato
     }
 
     /**
+     * This returns true if the Collection has no
+     * entries, otherwise false.
      *
+     * @return boolean
      * @see \TechDivision\Collections\Collection::isEmpty()
      */
     public function isEmpty()
@@ -267,6 +285,8 @@ abstract class AbstractCollection extends Object implements Collection, \Iterato
      * the new one is appended.
      *
      * @param \TechDivision\Collections\Collection $col Holds the Collection with the values to merge
+     *
+     * @return void
      * @deprecated Does not work correctly
      */
     public function merge(Collection $col)
