@@ -31,7 +31,7 @@ namespace TechDivision\Collections;
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link https://github.com/techdivision/TechDivision_Collections
  */
-class TreeMapTest extends PHPUnit_Framework_TestCase
+class TreeMapTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,7 +70,7 @@ class TreeMapTest extends PHPUnit_Framework_TestCase
             $map = new TreeMap();
             $this->assertNull($map->get(0));
             $this->fail("Insert out of bounds exception expected!");
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals("Index 0 out of bounds", $e->getMessage());
         }
     }
@@ -103,7 +103,7 @@ class TreeMapTest extends PHPUnit_Framework_TestCase
      */
     public function testDeleteWithException()
     {
-        $this->setExpectedException('IndexOutOfBoundsException');
+        $this->setExpectedException('\TechDivision\Collections\IndexOutOfBoundsException');
         // initialize a new TreeMap
         $map = new TreeMap();
         // try to remove a not existing object from the TreeMap

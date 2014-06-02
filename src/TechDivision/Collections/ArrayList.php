@@ -87,7 +87,7 @@ class ArrayList extends AbstractCollection
 			);
 		}
 		// set the item in the array
-        $this->_items[$this->count++] = $object;
+        $this->items[$this->count++] = $object;
 		// return the instance
 		return $this;
     }
@@ -135,9 +135,9 @@ class ArrayList extends AbstractCollection
 		// till the end of the items, else return all items from the offset
 		// with the defined length
 		if ($length == null) {
-			$items = array_slice($this->_items, $offset);
+			$items = array_slice($this->items, $offset);
 		} else {
-			$items = array_slice($this->_items, $offset, $length);
+			$items = array_slice($this->items, $offset, $length);
 		}
 		// return a new ArraList with the requested items
 		return new ArrayList($items);

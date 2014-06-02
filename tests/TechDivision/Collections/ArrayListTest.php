@@ -31,7 +31,7 @@ namespace TechDivision\Collections;
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link https://github.com/techdivision/TechDivision_Collections
  */
-class ArrayListTest extends PHPUnit_Framework_TestCase
+class ArrayListTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -116,7 +116,7 @@ class ArrayListTest extends PHPUnit_Framework_TestCase
         try {
             $list->remove(1);
             $this->fail("Expect exception!");
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals("Index 1 out of bounds", $e->getMessage());
         }
     }

@@ -20,6 +20,7 @@
  */
 namespace TechDivision\Collections;
 
+use TechDivision\Lang\Object;
 use TechDivision\Lang\String;
 use TechDivision\Lang\Float;
 use TechDivision\Lang\Integer;
@@ -36,7 +37,7 @@ use TechDivision\Lang\NullPointerException;
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link https://github.com/techdivision/TechDivision_Collections
  */
-abstract class AbstractCollection extends Object implements Collection, IteratorAggregate
+abstract class AbstractCollection extends Object implements Collection, \IteratorAggregate
 {
 
     /**
