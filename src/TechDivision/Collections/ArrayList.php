@@ -1,52 +1,48 @@
 <?php
 
 /**
- * License: GNU General Public License
+ * \TechDivision\Collections\ArrayList
  *
- * Copyright (c) 2009 TechDivision GmbH.  All rights reserved.
- * Note: Original work copyright to respective authors
+ * NOTICE OF LICENSE
  *
- * This file is part of TechDivision GmbH - Connect.
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
  *
- * TechDivision_Collections is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * PHP version 5
  *
- * TechDivision_Collections is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
- * USA.
- *
- * @package TechDivision_Collections
+ * @category  Library
+ * @package   TechDivision_Lang
+ * @author    Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
 
-require_once "TechDivision/Collections/AbstractCollection.php";
-require_once "TechDivision/Lang/Exceptions/NullPointerException.php";
-require_once "TechDivision/Lang/Exceptions/ClassCastException.php";
+namespace TechDivision\Collections;
+
+use TechDivision\Lang\ClassCastException;
+use TechDivision\Lang\NullPointerException;
 
 /**
  * This class is the implementation of a ArrayList.
  *
- * @package TechDivision_Collections
- * @author Tim Wagner <t.wagner@techdivision.com>
- * @copyright TechDivision GmbH
- * @link http://www.techdivision.com
- * @license GPL
+ * @category  Library
+ * @package   TechDivision_Collections
+ * @author    Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
-class TechDivision_Collections_ArrayList
-    extends TechDivision_Collections_AbstractCollection {
+class ArrayList extends AbstractCollection
+{
 
     /**
-	 * Holds the internal counter for the keys of the ArrayList
+	 * Holds the internal counter for the keys of the ArrayList.
+	 *
 	 * @var integer
 	 */
-    private $_count = 0;
+    protected $count = 0;
 
 	/**
 	 * Standardconstructor that adds the array passed
@@ -69,7 +65,7 @@ class TechDivision_Collections_ArrayList
 			return;
 		}
 		// if not a array is passed throw an exception
-		throw new TechDivision_Lang_Exceptions_ClassCastException(
+		throw new ClassCastException(
 			'Passed object is not an array'
 		);
 	}
@@ -79,19 +75,19 @@ class TechDivision_Collections_ArrayList
      * to the ArrayList.
      *
      * @param $object The object that should be added to the ArrayList
-     * @return TechDivision_Collection_ArrayList The instance
-     * @throws TechDivision_Lang_Exceptions_NullPointerException
-     * 		Is thrown it the passed object is NULL
+     *
+     * @return \TechDivision\Collection\ArrayList The instance
+     * @throws \TechDivision\Lang\NullPointerException Is thrown it the passed object is NULL
      */
     public function add($object)
     {
 		if (is_null($object)) {
-			throw new TechDivision_Lang_Exceptions_NullPointerException(
+			throw new NullPointerException(
 				'Passed object is null'
 			);
 		}
 		// set the item in the array
-        $this->_items[$this->_count++] = $object;
+        $this->_items[$this->count++] = $object;
 		// return the instance
 		return $this;
     }
@@ -101,19 +97,18 @@ class TechDivision_Collections_ArrayList
      * passed array.
      *
      * @param array $array Holds the array to initialize the new ArrayList
-     * @return TechDivision_Collections_ArrayList
-     * 		Returns an ArrayList initialized with the passed array
-     * @throws TechDivision_Lang_Exceptions_ClassCastException
-     * 		Is thrown if the passed object is not an array
+     *
+     * @return \TechDivision\Collections\ArrayList Returns an ArrayList initialized with the passed array
+     * @throws \TechDivision\Lang\ClassCastException Is thrown if the passed object is not an array
      */
     public static function fromArray($array)
     {
 		// check if the passed object is an array and set it
         if (is_array($array)) {
-			return new TechDivision_Collections_ArrayList($array);
+			return new ArrayList($array);
         }
 		// throw an exception if the passed object is not an array
-		throw new TechDivision_Lang_Exceptions_ClassCastException(
+		throw new ClassCastException(
 			'Passed object is not an array'
 		);
     }
@@ -129,8 +124,8 @@ class TechDivision_Collections_ArrayList
 	 *
 	 * @param integer $offset The start of the section
 	 * @param integer $length The length of the section to return
-	 * @return TechDivision_Collections_ArrayList
-	 * 		Holds the ArrayList with the requested elements
+	 *
+	 * @return \TechDivision\Collections\ArrayList Holds the ArrayList with the requested elements
 	 */
 	public function slice($offset, $length = null)
 	{
@@ -145,6 +140,6 @@ class TechDivision_Collections_ArrayList
 			$items = array_slice($this->_items, $offset, $length);
 		}
 		// return a new ArraList with the requested items
-		return new TechDivision_Collections_ArrayList($items);
+		return new ArrayList($items);
 	}
 }

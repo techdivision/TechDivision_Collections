@@ -1,21 +1,27 @@
 <?xml version="1.0"?>
 <project name="TechDivision_Collections" default="deploy" basedir=".">
+    
+	<property environment="env" />
+	
+    <property name="namespace" value="techdivision" />
+    <property name="module" value="collections"/>
+    <property name="codepool" value="vendor"/>
+    <property name="unique.name" value="${codepool}/${namespace}/${module}" />
+    <property name="php-src.dir" value="${basedir}/src" />
+    <property name="php-test.dir" value="${basedir}/tests" />
+    <property name="php-target.dir" value="${basedir}/target"/>
+	
 	<property file="${basedir}/build.properties"/>
 	<property file="${basedir}/build.default.properties"/>
     <property file="${basedir}/build.${os.family}.properties"/>
-	<property environment="env" />
-	<property name="namespace" value="TechDivision" />
-	<property name="module" value="Collections"/>
-	<property name="unique.name" value="${namespace}/${module}" />
-	<property name="php-src.dir" value="${basedir}/src" />
-	<property name="php-test.dir" value="${basedir}/tests" />
-	<property name="php-target.dir" value="${basedir}/target"/>
+	
 	<!-- ==================================================================== -->
 	<!-- Cleans the directories with the generated source files				  -->
 	<!-- ==================================================================== -->
 	<target name="clean" description="Cleans almost everything, so use carefully.">
 		<delete dir="${php-target.dir}" includeemptydirs="true" quiet="false" verbose="true" failonerror="true"/>
 	</target>
+	
 	<!-- ==================================================================== -->
 	<!-- Prepares all the required directories								  -->
 	<!-- ==================================================================== -->
@@ -23,244 +29,32 @@
 		<mkdir dir="${php-target.dir}" />
         <mkdir dir="${php-target.dir}/reports" />
         <mkdir dir="${php-target.dir}/reports/coverage" />
-		<condition property="init.pear">
-		    <available file="${pear.dir}" type="dir"/>
-		</condition>	
 	</target>
-    <!-- ==================================================================== -->
-    <!-- Prepares the PEAR repository in the PEAR src directory, necessary    -->
-    <!-- for the packages this project is related                             -->
-    <!-- ==================================================================== -->
-    <target name="prepare-pear" depends="prepare" unless="init.pear" description="Prepares the PEAR repository in the target directory, necessary for the packages this project is related.">
-        <!-- create the directory -->
-        <mkdir dir="${pear.dir}" />
-    	<!-- initialize the PEAR directory and the CI packages -->
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="config-create" />
-            <arg value="${pear.dir}" />
-            <arg value="${pear.dir}/pear.conf" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="config-set" />
-            <arg value="preferred_state" />
-            <arg value="beta" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="PEAR" />
-        </exec>    	
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="PHP_CodeSniffer" />
-        </exec> 
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="PHPDocumentor" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-update" />
-            <arg value="pear.php.net" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-discover" />
-            <arg value="pear.pdepend.org" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="pdepend/PHP_Depend" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-discover" />
-            <arg value="pear.phpmd.org" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="phpmd/PHP_PMD" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-discover" />
-            <arg value="pear.phpunit.de" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-discover" />
-            <arg value="components.ez.no" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-discover" />
-            <arg value="pear.symfony-project.com" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="phpunit/phpunit" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="phpunit/phploc" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="-f" />
-            <arg value="phpunit/phpcpd" />
-        </exec>
-        <!-- project specific packages -->
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-discover" />
-            <arg value="pear.firephp.org" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="firephp/FirePHPCore" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="channel-discover" />
-            <arg value="connect.techdivision.com" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_Generator" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_XHProfPHPUnit" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_PEAR" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_Lang" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_Util" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_Logger" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_HttpUtils" />
-        </exec>
-        <exec dir="${pear.dir}" executable="${pear.bin}">
-            <arg value="-c" />
-            <arg value="${pear.dir}/pear.conf" />
-            <arg value="install" />
-            <arg value="techdivision/TechDivision_Resources" />
-        </exec>
-    </target>
+	
     <!-- ==================================================================== -->
     <!-- Copies the sources to the target directory                           -->
     <!-- ==================================================================== -->
-    <target name="reset-pear" description="Deletes the PEAR directory.">
-        <delete dir="${pear.dir}"/>
-    	<antcall target="prepare-pear"/>
+    <target name="copy" depends="prepare" description="Copies the sources to the target directory.">
+        <copy todir="${php-target.dir}/${unique.name}/src" preservelastmodified="true" overwrite="true">
+            <fileset dir="${php-src.dir}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
     </target>
-	<!-- ==================================================================== -->
-	<!-- Copies the sources to the target directory							  -->
-	<!-- ==================================================================== -->
-	<target name="copy" depends="prepare-pear" description="Copies the sources to the target directory.">
-		<copy todir="${php-target.dir}/${namespace}/${module}">
-			<fileset dir="${php-src.dir}/${unique.name}">
-				<include name="**/*" />
-			</fileset>
-        	<filterchain>
-				<expandproperties/>
-			</filterchain>
-		</copy>
-	</target>
+	
 	<!-- ==================================================================== -->
 	<!-- Copies the sources to the deploy directory     					  -->
 	<!-- ==================================================================== -->
-	<target name="deploy" depends="copy" description="Copies the sources to the deploy directory.">		
-		<copy todir="${deploy.dir}">
+	<target name="deploy" description="Copies the sources to the deploy directory.">				
+		<antcall target="prepare"/>
+		<antcall target="copy"/>
+		<copy todir="${deploy.dir}/app/code" preservelastmodified="true" overwrite="true">
 			<fileset dir="${php-target.dir}">
-				<include name="${namespace}/${module}/**/*"/>
+				<include name="**/*"/>
 			</fileset>
 		</copy>
-	</target>	
-    <!-- ==================================================================== -->
-    <!-- Generates the PEAR package                                           -->
-    <!-- ==================================================================== -->
-    <target name="create-package" depends="copy" description="Generates the PEAR package.">
-		<tstamp>  
-		 	<format property="actual.date" pattern="yyyy-MM-dd" locale="en" />  
-		</tstamp>
-		<tstamp>  
-		 	<format property="actual.time" pattern="hh:mm:ss" locale="en" />  
-		</tstamp>
-        <copy tofile="${php-target.dir}/package2.xml" file="${basedir}/pear/package2.xml">
-        	<filterchain>
-				<expandproperties/>
-			</filterchain>
-		</copy>
-		<exec dir="${php-target.dir}" executable="${pear.bin}">
-			<arg value="techdivision-contents"/>
-            <arg value="-T"/>
-			<arg value="${php-target.dir}/package2.xml"/>
-			<arg value="-S"/>
-			<arg value="${php-target.dir}"/>
-            <arg value="-D"/>
-            <arg value="${php-target.dir}"/>
-            <arg value="-M"/>
-            <arg value="${unique.name}"/>
-		</exec>
-        <exec dir="${php-target.dir}" executable="${pear.bin}">
-            <arg value="package"/>
-            <arg value="package2.xml"/>
-        </exec>
-    </target>
+	</target>
+	
     <!-- ==================================================================== -->
     <!-- Generates the API documentation                                      -->
     <!-- ==================================================================== -->   
@@ -269,138 +63,106 @@
             <arg line="-ct type -ue on -s on -t ${php-target.dir}/docs -o HTML:frames:earthli -d ${php-src.dir}"/>  
          </exec>
     </target>
+	
     <!-- ==================================================================== -->
     <!-- Runs the code sniffer and generates a report                         -->
     <!-- ==================================================================== -->
-    <target name="phpcs" depends="apidoc" description="Runs the code sniffer and generates a report.">
-        <exec executable="${pear.bin.dir}/phpcs">
-            <arg line="--extensions=php,phtml --standard=Zend --report=checkstyle --report-file=${php-target.dir}/reports/checkstyle.xml ${php-src.dir}"/>
+    <target name="phpcs" description="Runs the code sniffer and generates a report.">
+        <exec executable="phpcs" failonerror="true">
+            <!-- call phpcs without report-file to get error message on build console -->
+            <arg line="-n --extensions=php --standard=phpcs.xml ./"/>
         </exec>
     </target>
+	
     <!-- ==================================================================== -->
     <!-- Runs the copy and paste detection                                    -->
     <!-- ==================================================================== -->
-    <target name="phpcpd" depends="phpcs" description="Runs the copy and paste detection.">
+    <target name="phpcpd" description="Runs the copy and paste detection.">
         <exec executable="${pear.bin.dir}/phpcpd">
             <arg line="--log-pmd ${php-target.dir}/reports/pmd-cpd.xml ${php-src.dir}"/>
         </exec>
     </target>
+	
     <!-- ==================================================================== -->
     <!-- Generate phploc.csv                                                  -->
     <!-- ==================================================================== -->
-    <target name="phploc" depends="phpcpd" description="Generate phploc.csv">
+    <target name="phploc" description="Generate phploc.csv">
         <exec executable="${pear.bin.dir}/phploc">
             <arg line="--log-xml ${php-target.dir}/reports/phploc.xml ${php-src.dir}"/>
         </exec>
     </target>
+	
     <!-- ==================================================================== -->
     <!-- Runs the PHPDepend tool and generats a graphs                        -->
     <!-- ==================================================================== -->
-    <target name="pdepend" depends="phploc" description="Runs the PHPDepend tool and generats a graphs.">
+    <target name="pdepend" description="Runs the PHPDepend tool and generats a graphs.">
         <exec executable="${pear.bin.dir}/pdepend">
             <arg line="--summary-xml=${php-target.dir}/reports/pdepend.xml --jdepend-xml=${php-target.dir}/reports/jdepend.xml --jdepend-chart=${php-target.dir}/reports/jdepend.svg --overview-pyramid=${php-target.dir}/reports/pdepend-pyramid.svg ${php-src.dir}" />
         </exec>
     </target>
+	
     <!-- ==================================================================== -->
     <!-- Runs the PHP mess detector tool                                      -->
     <!-- ==================================================================== -->
-    <target name="phpmd" depends="pdepend" description="Runs the PHP Mess detector tool.">
+    <target name="phpmd" description="Runs the PHP Mess detector tool.">
         <exec executable="${pear.bin.dir}/phpmd">
             <arg line="${php-src.dir} xml codesize,unusedcode --reportfile ${php-target.dir}/reports/pmd.xml" />
         </exec>
     </target>
-	<!-- ==================================================================== -->
-	<!-- Copies the test sources to the target directory					  -->
-	<!-- ==================================================================== -->
-	<target name="copy-tests" depends="copy" description="Copies the test sources to the target directory.">
-		<copy todir="${php-target.dir}">
-			<fileset dir="${php-test.dir}">
-				<include name="**/*" />
-			</fileset>
-			<filterchain>
-				<expandproperties/>
-			</filterchain>
-		</copy>
-	</target>
+
+    <!-- ==================================================================== -->
+    <!-- Copies the test sources to the target directory					  -->
+    <!-- ==================================================================== -->
+    <target name="copy-tests" depends="copy" description="Copies the test sources to the target directory.">
+    	<!-- copy the test classes to the target directory -->
+        <copy todir="${php-target.dir}/${unique.name}/src">
+            <fileset dir="${php-test.dir}">
+                <include name="**/*" />
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+    	<!-- copy the composer configuration file to the target directory -->
+    	<copy file="${basedir}/composer.json" todir="${php-target.dir}" />
+        <!-- install composer packages -->
+        <exec dir="${php-target.dir}" executable="composer">
+            <env key="PATH" value="${instance.base.dir}/bin:${env.PATH}"/>
+            <arg line="--no-interaction update"/>
+        </exec>
+    </target>
+
+    <!-- ==================================================================== -->
+    <!-- Runs the PHPUnit tests on Travis-CI and generates a report           -->
+    <!-- ==================================================================== -->
+    <target name="run-tests" depends="copy-tests" description="Runs the PHPUnit tests on Travis-CI and generates a report.">
+        <exec executable="phpunit" dir="${php-target.dir}/${unique.name}/src" failonerror="true">
+        	<arg line="--configuration phpunit.xml.dist" />
+        </exec>
+    </target>
+
     <!-- ==================================================================== -->
     <!-- Runs the PHPUnit tests and generates a report                        -->
     <!-- ==================================================================== -->
-    <target name="run-tests" depends="copy-tests" description="Runs the PHPUnit tests and generates a report.">
-        <exec executable="${pear.bin.dir}/phpunit" dir="${php-target.dir}">
-            <arg line="--log-junit ${php-target.dir}/reports/phpunit.xml --coverage-clover ${php-target.dir}/reports/coverage/clover.xml --coverage-html ${php-target.dir}/reports/coverage/ ${namespace}/${module}/AllTests" />
+    <target name="run-tests-in-runtime" depends="copy-tests" description="Runs the PHPUnit tests and generates a report.">
+        <exec executable="${instance.base.dir}/bin/php" dir="${php-target.dir}/${unique.name}/src" failonerror="true">
+        	<arg line="-d zend_extension=xdebug.so ${instance.base.dir}/app/code/vendor/bin/phpunit --configuration phpunit.xml.dist" />
         </exec>
     </target>
+	
 	<!-- ==================================================================== -->
 	<!-- Runs the PHPUnit tests and generates a report						  -->
 	<!-- ==================================================================== -->
 	<target name="build" description="Runs the PHPUnit tests and generates a report.">
-		<antcall target="reset-pear"/>
-		<antcall target="run-tests"/>
-		<antcall target="phpmd"/>
+        <antcall target="phpcs"/>
+        <antcall target="run-tests"/>
+        <!--
+        <antcall target="apidoc"/>
+        <antcall target="phpcpd"/>
+        <antcall target="phploc"/>
+        <antcall target="pdepend"/>
+        <antcall target="phpmd"/>
+        -->
 	</target>
-    <!-- ==================================================================== -->
-    <!-- Upload current release version to PEAR Channel                       -->
-    <!-- ==================================================================== -->
-    <target name="upload-release" >
-        <echo message="Releasing ${namespace}_${module}-${release.version}.tgz on ${pear.channel} using API-Hash ${pear.api.hash}..."/>
-    	<exec executable="${curl.bin}"  outputproperty="exec.response">
-			<arg line='-F hash="${pear.api.hash}" -F qqfile=@"${php-target.dir}/${namespace}_${module}-${release.version}.tgz" -s http://${pear.channel}/upload'/>
-		</exec>
-		<echo>${exec.response}</echo>
-    </target>
-    <!-- ==================================================================== -->
-    <!-- Release new patch version                                            -->
-    <!-- ==================================================================== -->
-    <target name="version-release" >
-        <taskdef resource="net/sf/antcontrib/antlib.xml"/>
-        <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>
-        <echo message="Preparing new version release" />
-        <exec executable="awk" output="${basedir}/build.default.properties">
-            <arg line="'BEGIN{FS=&quot;.&quot;} {if ($1 ~ /release/ &amp;&amp; $2 ~ /version/) print $1 &quot;.&quot; $2 &quot;.&quot; $3 &quot;.&quot; ++$4;else print}' ${basedir}/build.default.properties" />
-        </exec>
-        <property file="${basedir}/build.default.properties" prefix="new"/>
-        <var name="release.version" unset="true"/>
-        <propertycopy name="release.version" from="new.release.version" />
-        <input message="Please enter changelog for release version ${release.version}:" addproperty="release.changelog" defaultvalue="- New release version"/>
-        <tstamp>
-            <format property="actual.date" pattern="yyyy-MM-dd" locale="en" />
-            <format property="actual.time" pattern="hh:mm:ss" locale="en" />
-        </tstamp>
-        <xmltask source="${basedir}/pear/package2.xml" dest="${basedir}/pear/package2.xml">
-            <replace path="/:package/:notes/text()" withXml="${release.changelog}"/>
-            <insert path="/*[local-name()='package']/*[local-name()='changelog']/*[local-name()='release'][1]" position="before">
-                <![CDATA[<release>
-                    <version>
-                        <release>${release.version}</release>
-                        <api>${api.version}</api>
-                    </version>
-                    <stability>
-                        <release>${release.stability}</release>
-                        <api>${api.stability}</api>
-                    </stability>
-                    <date>${actual.date}</date>
-                    <license uri="http://www.gnu.org/licenses/gpl-2.0.html">GPL, version 2.0</license>
-                    <notes>
-                        ${release.changelog}
-                    </notes>
-                </release>]]>
-            </insert>
-        </xmltask>        
-        <propertyregex property="tag.release.version" input="${release.version}" regexp="\." replace="-" casesensitive="true"/>
-        <exec executable="${git.bin}" dir="${basedir}">
-            <arg line="commit -a -m '${release.changelog}'" />
-        </exec>
-		<exec executable="${git.bin}" dir="${basedir}">
-			<arg line="push" />
-		</exec>
-        <exec executable="${git.bin}" dir="${basedir}">
-            <arg line="tag -a -m '${release.changelog}' release-${tag.release.version}" />
-        </exec>
-		<exec executable="${git.bin}" dir="${basedir}">
-			<arg line="push ${github.url} tag release-${tag.release.version}" />
-		</exec>
-        <antcall target="create-package"/>
-        <antcall target="upload-release"/>
-        <echo message="${namespace} Version ${release.version} released." />
-    </target>
+	
 </project>

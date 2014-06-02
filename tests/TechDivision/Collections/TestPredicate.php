@@ -1,56 +1,52 @@
 <?php
 
 /**
- * License: GNU General Public License
+ * \TechDivision\Collections\TestPredicate
  *
- * Copyright (c) 2009 TechDivision GmbH.  All rights reserved.
- * Note: Original work copyright to respective authors
+ * NOTICE OF LICENSE
  *
- * This file is part of TechDivision GmbH - Connect.
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
  *
- * faett.net is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * PHP version 5
  *
- * faett.net is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
- * USA.
- *
- * @package TechDivision_Collections
+ * @category  Library
+ * @package   TechDivision_Lang
+ * @author    Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
-
-require_once "TechDivision/Collections/Interfaces/Predicate.php";
+namespace TechDivision\Collections;
 
 /**
  * This class implements a predicate needed for
  * the test case of the CollectionUtils.
  *
+ * @category Library
  * @package TechDivision_Collections
- * @author Tim Wagner <t.wagner@techdivision.com>
- * @copyright TechDivision GmbH
- * @link http://www.techdivision.com
- * @license GPL
+ * @author Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link https://github.com/techdivision/TechDivision_Collections
  */
-class TechDivision_Collections_TestPredicate
-    implements TechDivision_Collections_Interfaces_Predicate {
+class TestPredicate implements Predicate
+{
 
     /**
-	 * @var string This variable holds the lastname needed for evaluation purposes
-	 */
-    private $lastname = "";
+     * This variable holds the lastname needed for evaluation purposes.
+     *
+     * @var string
+     */
+    protected $lastname = "";
 
     /**
      * The constructor initializes the internal member
      * with the value passed as parameter.
      *
-     * @param string The string needed for the evaluation
+     * @param string $lastname The string needed for the evaluation
+     *
      * @return void
      */
     public function __construct($lastname)
@@ -62,7 +58,9 @@ class TechDivision_Collections_TestPredicate
      * This function checks that the string passed as
      * parameter is the same as the member.
      *
-     * @param string $lastname The string that should be evaluated
+     * @param string $lastname
+     *            The string that should be evaluated
+     *
      * @return boolean True if the strings a equal, else false
      */
     public function evaluate($lastname)

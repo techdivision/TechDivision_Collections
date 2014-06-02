@@ -1,63 +1,56 @@
 <?php
 
 /**
- * License: GNU General Public License
+ * \TechDivision\Collections\ArrayListTest
  *
- * Copyright (c) 2009 TechDivision GmbH.  All rights reserved.
- * Note: Original work copyright to respective authors
+ * NOTICE OF LICENSE
  *
- * This file is part of TechDivision GmbH - Connect.
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
  *
- * faett.net is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * PHP version 5
  *
- * faett.net is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
- * USA.
- *
- * @package TechDivision_Collections
+ * @category  Library
+ * @package   TechDivision_Lang
+ * @author    Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://github.com/techdivision/TechDivision_Collections
  */
-
-require_once "PHPUnit/Framework.php";
-require_once "TechDivision/Collections/ArrayList.php";
-require_once "TechDivision/Collections/HashMap.php";
+namespace TechDivision\Collections;
 
 /**
  * This class implements the test cases
  * of the ArrayList.
  *
+ * @category Library
  * @package TechDivision_Collections
- * @author Tim Wagner <t.wagner@techdivision.com>
- * @copyright TechDivision GmbH
- * @link http://www.techdivision.com
- * @license GPL
+ * @author Tim Wagner <tw@techdivision.com>
+ * @copyright 2014 TechDivision GmbH <info@techdivision.com>
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link https://github.com/techdivision/TechDivision_Collections
  */
-class TechDivision_Collections_ArrayListTest extends PHPUnit_Framework_TestCase
+class ArrayListTest extends PHPUnit_Framework_TestCase
 {
 
-	/**
-	 * @var ArrayList This variable holds the ArrayList
-	 */
-	private $list = null;
+    /**
+     * This variable holds the ArrayList.
+     *
+     * @var \TechDivision\Collections\ArrayList
+     */
+    protected $list = null;
 
-	/**
-	 * This method tests the add and the get method
+    /**
+     * This method tests the add and the get method
      * of the ArrayList.
-	 *
-	 * @return void
-	 */
-	public function testAddAndGetAndIsEmptyAndClear()
-	{
+     *
+     * @return void
+     */
+    public function testAddAndGetAndIsEmptyAndClear()
+    {
         // initialize a new ArrayList
-        $list = new TechDivision_Collections_ArrayList();
+        $list = new ArrayList();
         // check that the ArrayList is empty
         $this->assertTrue($list->isEmpty());
         // add a new element
@@ -72,35 +65,33 @@ class TechDivision_Collections_ArrayListTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($list->isEmpty());
     }
 
-	/**
-	 * This method tests the get method of the ArrayList.
-	 *
-	 * @return void
-	 */
-	public function testAddNullWithException()
-	{
-	    // set the excpected exception
-	    $this->setExpectedException(
-	    	'TechDivision_Lang_Exceptions_NullPointerException'
-	    );
+    /**
+     * This method tests the get method of the ArrayList.
+     *
+     * @return void
+     */
+    public function testAddNullWithException()
+    {
+        // set the excpected exception
+        $this->setExpectedException('\TechDivision\Lang\NullPointerException');
         // initialize a new ArrayList
-        $list = new TechDivision_Collections_ArrayList();
+        $list = new ArrayList();
         // try to add a null value
         $list->add(null);
         // let the test fail
         $this->fail("Expected exception NullPointerException not thrown");
     }
 
-	/**
-	 * This method tests the add, remove and
+    /**
+     * This method tests the add, remove and
      * size method of the ArrayList.
-	 *
-	 * @return void
-	 */
-	public function testAddAndRemoveAndSize()
-	{
+     *
+     * @return void
+     */
+    public function testAddAndRemoveAndSize()
+    {
         // initialize a new ArrayList
-        $list = new TechDivision_Collections_ArrayList();
+        $list = new ArrayList();
         $this->assertEquals(0, $list->size());
         $list->add("Element 1");
         $list->add("Element 2");
@@ -110,17 +101,17 @@ class TechDivision_Collections_ArrayListTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $list->size());
     }
 
-	/**
-	 * This method tests that a exception is thrown if the
+    /**
+     * This method tests that a exception is thrown if the
      * object with the key, passed to the remove method as
      * a parameter, does not exist in the ArrayList.
-	 *
-	 * @return void
-	 */
-	public function testDeleteWithException()
-	{
+     *
+     * @return void
+     */
+    public function testDeleteWithException()
+    {
         // initialize a new ArrayList
-        $list = new TechDivision_Collections_ArrayList();
+        $list = new ArrayList();
         // try to remove a not existing object from the ArrayList
         try {
             $list->remove(1);
@@ -130,22 +121,22 @@ class TechDivision_Collections_ArrayListTest extends PHPUnit_Framework_TestCase
         }
     }
 
-	/**
-	 * This method tests that the exists method
-	 * returns TRUE if the values exists in the
-	 * ArrayList.
-	 *
-	 * @return void
-	 */
-	public function testExists()
-	{
-		// initialize two new ArrayList's
-		$list = new TechDivision_Collections_ArrayList();
-		// add different values to the ArrayList
-		$list->add("test");
-		$list->add(1);
-		// check for the values
+    /**
+     * This method tests that the exists method
+     * returns TRUE if the values exists in the
+     * ArrayList.
+     *
+     * @return void
+     */
+    public function testExists()
+    {
+        // initialize two new ArrayList's
+        $list = new ArrayList();
+        // add different values to the ArrayList
+        $list->add("test");
+        $list->add(1);
+        // check for the values
         $this->assertTrue($list->exists(0));
-		$this->assertTrue($list->exists(1));
+        $this->assertTrue($list->exists(1));
     }
 }
