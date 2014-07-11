@@ -2,10 +2,10 @@
     "name": "techdivision/collections",
     "description": "Package that provides basic PHP collections and utilities.",
     "homepage": "https://github.com/techdivision/TechDivision_Collections",
-    "license": ["OSL-3.0"],
+    "license": [ "OSL-3.0" ],
     "require": {
-        "php" : ">=5.3.0",
-        "techdivision/lang" : "dev-master"
+        "php" : ">=5.4.0",
+        "techdivision/lang" : "0.1.*"
     },
     "autoload": {
         "psr-0": {
