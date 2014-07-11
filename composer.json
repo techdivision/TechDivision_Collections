@@ -1,20 +1,20 @@
 {
     "name": "techdivision/collections",
-    "type": "package",
     "description": "Package that provides basic PHP collections and utilities.",
     "homepage": "https://github.com/techdivision/TechDivision_Collections",
     "license": ["OSL-3.0"],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/techdivision/TechDivision_Collections"
-        }
-    ],
     "require": {
         "php" : ">=5.3.0",
         "techdivision/lang" : "dev-master"
     },
     "autoload": {
-        "psr-0": {"TechDivision": "src/"}
+        "psr-0": {
+            "TechDivision\\Collections": [ "src/", "tests/" ]
+        }
+    },
+    "config":{
+        "github-oauth":{
+            "github.com":"604a3b5943228e434a5b52c2ba3cf72286d30db9"
+        }
     }
 }
