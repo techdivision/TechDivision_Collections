@@ -156,6 +156,6 @@ Found item with key 2 and value 13 Found item with key 1 and value 14 Found item
 
 # External Links
 
-* appserver.io [combined documentation](http://docs.appserver.io)
+* Documentation at [appserver.io](http://docs.appserver.io)
+* Documentation on [GitHub](https://github.com/techdivision/TechDivision_AppserverDocumentation)
 * [Getting started](https://github.com/techdivision/TechDivision_AppserverDocumentation/tree/master/docs/getting-started)
-* Documentation found on [GitHub](https://github.com/techdivision/TechDivision_AppserverDocumentation)
