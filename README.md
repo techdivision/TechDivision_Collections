@@ -35,7 +35,8 @@ elements can be added, returned oder deleted. The ArrayList is unsorted and has 
 starts with 0.
 
 ```php
-// initialize a new ArrayList object $list = new ArrayList(); 
+// initialize a new ArrayList object 
+$list = new ArrayList(); 
 // add several values 
 $list->add(new Integer(1)); 
 $list->add(new Integer(2));
@@ -60,7 +61,7 @@ $map = new HashMap();
 // add several values 
 $map->add("number", new Integer(1)); 
 $map->add("string", new String("foo")); 
-foreach($list as $key => $item) { 
+foreach($map as $key => $item) { 
     echo "Found item with key " . $key . " and value " . $item->__toString() . PHP_EOL;
 } 
 
